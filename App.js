@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "./screens/LoginScreen";
@@ -30,5 +29,3 @@ const globalScreenOptions = {
   headerTitleStyle: { color: "white", alignSelf: "center" },
   headerTintColor: "white",
 };
-
-const styles = StyleSheet.create({});

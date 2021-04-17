@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
-import { db } from "../firebase";
+import { db } from "../database_config/firebase";
 
 const CustomListItem = ({ id, chatName, enterChat }) => {
   const [chatMessages, setChatMessages] = useState([]);
+  const photoUrl = chatMessages?.[0]?.photoUrl
+    ? { uri: chatMessages[0].photoUrl }
+    : require("../assets/default-avatar.png");
 
   useEffect(() => {
     const setting = db
@@ -20,12 +22,7 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
 
   return (
     <ListItem onPress={() => enterChat(id, chatName)} key={id} bottomDivider>
-      <Avatar
-        rounded
-        source={
-          chatMessages?.[0]?.photoUrl || require("../assets/default-avatar.png")
-        }
-      />
+      <Avatar rounded source={photoUrl} />
       <ListItem.Content>
         <ListItem.Title style={{ fontWeight: "800" }}>
           {chatName}
@@ -39,5 +36,3 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
 };
 
 export default CustomListItem;
-
-const styles = StyleSheet.create({});

@@ -1,10 +1,11 @@
 import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Input, Icon, Button } from "react-native-elements";
-import { db } from "../firebase";
+import { db } from "../database_config/firebase";
 import { AntDesign } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import styles from "../styles";
 
 const NewChatScreen = ({ navigation }) => {
   const [input, setInput] = useState("");
@@ -65,7 +66,7 @@ const NewChatScreen = ({ navigation }) => {
 
 export default NewChatScreen;
 
-const styles = StyleSheet.create({
+/* const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
@@ -78,4 +79,4 @@ const styles = StyleSheet.create({
     width: 200,
     marginTop: 20,
   },
-});
+}); */

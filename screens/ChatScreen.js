@@ -1,6 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
@@ -12,8 +11,9 @@ import {
 import { Avatar } from "react-native-elements";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
-import { db, auth } from "../firebase";
-import firebase from "firebase/app";
+import { db, auth } from "../database_config/firebase";
+import firebase from "firebase";
+import styles from "../styles";
 
 const ChatScreen = ({ navigation, route }) => {
   const [input, setInput] = useState("");
@@ -103,7 +103,7 @@ const ChatScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <StatusBar style="inverted" />
-      <KeyboardAvoidingView style={styles.container}>
+      <KeyboardAvoidingView style={styles.chatScreenContainer}>
         <>
           <ScrollView contentContainerStyle={{ paddingTop: 10 }}>
             {messages.map(({ id, data }) =>
@@ -135,7 +135,7 @@ const ChatScreen = ({ navigation, route }) => {
                     containerStyle={{
                       position: "absolute",
                       bottom: -10,
-                      right: -8,
+                      left: -8,
                     }}
                     source={{ uri: data.photoUrl }}
                   />
@@ -170,7 +170,7 @@ const ChatScreen = ({ navigation, route }) => {
 
 export default ChatScreen;
 
-const styles = StyleSheet.create({
+/* const styles = StyleSheet.create({
   headerRightView: {
     flexDirection: "row",
     justifyContent: "space-around",
@@ -230,4 +230,4 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "white",
   },
-});
+}); */

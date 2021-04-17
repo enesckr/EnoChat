@@ -1,21 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { useState, useLayoutEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  KeyboardAvoidingView,
-  TouchableOpacity,
-} from "react-native";
+import { View, KeyboardAvoidingView, TouchableOpacity } from "react-native";
 import { Input, Icon, Text, Button } from "react-native-elements";
-import { auth } from "../firebase";
+import { auth } from "../database_config/firebase";
 import { AntDesign } from "@expo/vector-icons";
+import styles from "../styles";
 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
+  const [photoUrl, setPhotoUrl] = useState("");
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -37,7 +33,7 @@ const RegisterScreen = ({ navigation }) => {
       .then((authUser) => {
         authUser.user.updateProfile({
           displayName: name,
-          photoURL: imgUrl || "../assets/default-avatar.png",
+          photoURL: photoUrl || "../assets/default-avatar.png",
         });
       })
       .catch((error) => alert(error.message));
@@ -97,8 +93,8 @@ const RegisterScreen = ({ navigation }) => {
         <Input
           placeholder="Profile picture URL (optional)"
           textContentType="URL"
-          value={imgUrl}
-          onChangeText={(text) => setImgUrl(text)}
+          value={photoUrl}
+          onChangeText={(text) => setPhotoUrl(text)}
           leftIcon={
             <Icon
               name="image"
@@ -122,20 +118,3 @@ const RegisterScreen = ({ navigation }) => {
 };
 
 export default RegisterScreen;
-
-const styles = StyleSheet.create({
-  inputContainer: {
-    width: 300,
-  },
-  button: {
-    width: 200,
-    marginTop: 10,
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-    backgroundColor: "white",
-  },
-});

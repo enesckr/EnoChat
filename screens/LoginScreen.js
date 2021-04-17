@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, KeyboardAvoidingView } from "react-native";
+import { View, KeyboardAvoidingView } from "react-native";
 import { Button, Input, Image, Icon } from "react-native-elements";
-import { auth } from "../firebase";
+import { auth } from "../database_config/firebase";
+import styles from "../styles";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -83,7 +84,7 @@ const LoginScreen = ({ navigation }) => {
 };
 
 export default LoginScreen;
-
+/* 
 const styles = StyleSheet.create({
   inputContainer: {
     width: 300,
@@ -99,4 +100,4 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "white",
   },
-});
+}); */
